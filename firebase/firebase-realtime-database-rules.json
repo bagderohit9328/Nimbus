@@ -1,0 +1,37 @@
+{
+  "rules": {
+    "weather_data": {
+      ".read": true,
+      ".write": "auth != null",
+      "nodes": {
+        "$nodeId": {
+          ".validate": "newData.hasChildren(['nodeId', 'temperature', 'humidity', 'pressure', 'timestamp'])"
+        }
+      }
+    },
+    "sos_events": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$eventId": {
+        ".validate": "newData.hasChildren(['userId', 'latitude', 'longitude', 'timestamp'])"
+      }
+    },
+    "system": {
+      ".read": "auth != null",
+      "trigger_siren": {
+        ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
+      }
+    },
+    "admins": {
+      ".read": "auth != null && root.child('admins').child(auth.uid).exists()",
+      ".write": false
+    },
+    "team_locations": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$teamId": {
+        ".validate": "newData.hasChildren(['latitude', 'longitude', 'timestamp'])"
+      }
+    }
+  }
+}

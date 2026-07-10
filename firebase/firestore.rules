@@ -1,0 +1,71 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users collection
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId || 
+                            get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      allow create: if request.auth != null;
+    }
+
+    // Weather data collection
+    match /weather_data/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth.token.firebase.sign_in_provider == 'custom' || 
+                      get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Bookings collection
+    match /bookings/{bookingId} {
+      allow read, write: if request.auth.uid == resource.data.userId || 
+                            get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      allow create: if request.auth != null;
+    }
+
+    // SOS Events collection
+    match /sos_events/{eventId} {
+      allow read: if request.auth != null;
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+                      request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null;
+    }
+
+    // Admin logs
+    match /admin_logs/{logId} {
+      allow read: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Safety protocols
+    match /safety_protocols/{protocolId} {
+      allow read: if request.auth != null;
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Team tracking
+    match /team_tracking/{teamId} {
+      allow read: if request.auth != null;
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+                      request.auth.uid in resource.data.teamMembers;
+    }
+
+    // Bluetooth devices
+    match /bluetooth_devices/{deviceId} {
+      allow read: if request.auth != null;
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // User devices (GPS trackers, beacons)
+    match /user_devices/{userId}/{deviceId} {
+      allow read, write: if request.auth.uid == userId || 
+                            get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Weather locations (7-day forecasts)
+    match /weather_forecasts/{locationId} {
+      allow read: if request.auth != null;
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+  }
+}

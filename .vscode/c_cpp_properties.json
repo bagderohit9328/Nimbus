@@ -1,0 +1,52 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/firmware/gateway-node/src/**",
+                "${workspaceFolder}/firmware/gateway-node/.pio/libdeps/esp32dev/**",
+                "${workspaceFolder}/firmware/gateway-node/.pio/build/esp32dev/**",
+                "${workspaceFolder}/firmware/remote-node/**",
+                "${workspaceFolder}/firmware/remote-node/.pio/libdeps/esp32dev/**",
+                "${workspaceFolder}/firmware/remote-node/.pio/build/esp32dev/**",
+                "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\cores\\esp32",
+                "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\variants\\esp32",
+                "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\libraries\\**",
+                "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\**",
+                "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\include",
+                "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\include\\**",
+                "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\include\\driver\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "ARDUINO=10819",
+                "ARDUINO_ARCH_ESP32",
+                "ESP32"
+            ],
+            "compilerPath": "${env:USERPROFILE}\\.platformio\\packages\\toolchain-xtensa-esp32\\bin\\xtensa-esp32-elf-gcc.exe",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/firmware/gateway-node/src/**",
+                    "${workspaceFolder}/firmware/gateway-node/.pio/libdeps/esp32dev/**",
+                    "${workspaceFolder}/firmware/gateway-node/.pio/build/esp32dev/**",
+                    "${workspaceFolder}/firmware/remote-node/**",
+                    "${workspaceFolder}/firmware/remote-node/.pio/libdeps/esp32dev/**",
+                    "${workspaceFolder}/firmware/remote-node/.pio/build/esp32dev/**",
+                    "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\cores\\esp32",
+                    "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\variants\\esp32",
+                    "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\libraries\\**",
+                    "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\**",
+                    "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\include",
+                    "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\include\\**",
+                    "${env:USERPROFILE}\\.platformio\\packages\\framework-arduinoespressif32\\tools\\sdk\\esp32\\include\\driver\\include"
+                ]
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}
